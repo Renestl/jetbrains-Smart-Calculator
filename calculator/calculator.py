@@ -1,23 +1,29 @@
 # write your code here
 class Calculator:
+    def __init__(self):
+        self.menu()
 
-    def addition(num_a, num_b):
-        print(int(num_a) + int(num_b))
+    def menu(self):
+        while True:
+            nums = input().split()
 
-    while True:
-        nums = input()
-        input_len = len(nums.split())
+            if not nums:
+                continue
+            if len(nums) >= 2:
+                self.addition(nums)  # pass list of numbers
+            elif len(nums) == 1:
+                if nums[0] == '/exit':
+                    print('Bye!')
+                    quit()
+                elif nums[0] == '/help':
+                    print('The program calculates the sum of numbers')
+                print(nums[0])
 
-        if nums == '/exit':
-            print('Bye!')
-            quit()
-        elif input_len == 0:
-            pass
-        elif input_len == 1:
-            print(int(nums))
-        elif input_len == 2:
-            a, b = nums.split(" ")
-            addition(a, b)
+    @staticmethod
+    def addition(*args):
+        num_sum = sum([int(num) for num in args[0]])
+        print(num_sum)
+        # return sum
 
 
 if __name__ == '__main__':
